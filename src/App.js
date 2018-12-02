@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 
 class App extends Component {
   render() {
+      console.log(this.props.question)
     return (
       <div className="App">
         <header className="App-header">
@@ -26,11 +27,9 @@ class App extends Component {
     );
   }
 }
-
 function mapStateToProps(state){
     return {
       ...state
     }
 }
-
 export default connect(mapStateToProps)(App);
