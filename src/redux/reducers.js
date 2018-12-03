@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 function score(state = 0, action = {}){
     switch(action.type){
