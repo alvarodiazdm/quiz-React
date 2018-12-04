@@ -5,9 +5,15 @@ export default class Game extends React.Component{
         return (
             <div>
                 {this.props.question.question}: {}
-                <input type="text" value={this.props.question.userAnswer || ''} onChange={e=>{
+                <input type="text" value={this.props.question.userAnswer || ''} onChange={ e =>{
                     this.props.onQuestionAnswer(e.target.value);
                 }}/>
+                <p>
+                    <button onClick={() =>{
+                       this.props.onChangeQuestion();
+                    }}>GAME: Siguiente</button>
+                    <button onClick={()=>console.log("Anterior")}>Anterior</button>
+                </p>
             </div>
         );
     }
