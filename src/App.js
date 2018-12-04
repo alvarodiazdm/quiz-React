@@ -13,11 +13,12 @@ class App extends Component {
     return (
         <div>
             <Game question = {this.props.questions[this.props.currentQuestion]}
+                  image = {this.props.questions[this.props.currentQuestion].attachment.url}
                   onQuestionAnswer = {(answer) => {
                       this.props.dispatch(questionAnswer(this.props.currentQuestion, answer))
                   }}
-                  onChangeQuestion = {()=>{
-                      this.props.dispatch(changeQuestion(this.props.currentQuestion + 1))
+                  onChangeQuestion = {(a)=>{
+                      this.props.dispatch(changeQuestion(this.props.currentQuestion + a))
                   }}
             />
         </div>

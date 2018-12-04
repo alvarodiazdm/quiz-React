@@ -4,6 +4,8 @@ import { CHANGE_QUESTION } from "./actions";
 import { SUBMIT } from "./actions";
 import { INIT_QUESTIONS } from "./actions";
 
+let last = false;
+
 function score(state = 0, action = {}){
     switch(action.type){
         default:
@@ -19,6 +21,18 @@ function finished(state = false, action={}){
 function currentQuestion(state = 0, action={}){
     switch (action.type){
         case CHANGE_QUESTION:
+            //action.payload = action.payload + 1
+
+            if(action.payload === 0){
+                document.getElementById("anterior").disabled = true;
+            }else{
+                document.getElementById("anterior").disabled = false;
+            }
+            if(action.payload === 9){ //CAMBIAR ESTO POR INIT_QUESTIONS CUANDO LO IMPLEMENTEMOS
+                document.getElementById("siguiente").disabled = true;
+            }else {
+                document.getElementById("siguiente").disabled = false;
+            }
             return action.payload;
         default:
             return state;
