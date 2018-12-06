@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import Game from "./Game";
 import {questionAnswer} from "./redux/actions";
 import {changeQuestion} from "./redux/actions";
+import {submit} from "./redux/actions";
+import {initQuestions} from "./redux/actions";
 
 class App extends Component {
   render() {
@@ -20,6 +22,10 @@ class App extends Component {
                   }}
                   onChangeQuestion = {(a)=>{
                       this.props.dispatch(changeQuestion(this.props.currentQuestion + a))
+                  }}
+                  score = {this.props.score}
+                  submit = {()=>{
+                      this.props.dispatch(submit(this.props.questions))
                   }}
             />
         </div>

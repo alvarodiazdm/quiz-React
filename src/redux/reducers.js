@@ -4,16 +4,37 @@ import { CHANGE_QUESTION } from "./actions";
 import { SUBMIT } from "./actions";
 import { INIT_QUESTIONS } from "./actions";
 
-let last = false;
-
 function score(state = 0, action = {}){
     switch(action.type){
+        case SUBMIT:
+            state = 0;
+            //console.log(action.payload[0].question)
+            for(let n =0; n<action.payload.length ; n++){
+                //console.log(action.payload[n].answer);
+                if(action.payload[n].userAnswer === undefined){
+                    action.payload[n].userAnswer = "";
+                }
+                if(action.payload[n].answer.toLowerCase() === action.payload[n].userAnswer.toLowerCase()){
+                    state++;
+                }
+            }
+            console.log(state);
+            return state;
         default:
             return state;
     }
 }
 function finished(state = false, action={}){
     switch (action.type){
+        case SUBMIT:
+            for(let n in action.payload){
+               if (action.payload[n].userAnswer === undefined || action.payload[n].userAnswer === "") {
+                   state = false;
+                   return state;
+               }
+            }
+            state = true;
+            return state;
         default:
             return state;
     }
