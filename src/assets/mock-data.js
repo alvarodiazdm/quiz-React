@@ -67,7 +67,8 @@ export const questions =[
             "mime":"image/jpeg",
             "url":"https://res.cloudinary.com/core-upm/image/upload/v1540377934/core/quiz2018/attachments/aorzbrixvkoiffhzzzyc.jpg"},
         "favourite":false,
-        "tips":["En inglÃ©s se titulaba LOST"]},
+        "tips":["En inglÃ©s se titulaba LOST",
+            "la respuesta esta en español"]},
 
     {
         "id":31,

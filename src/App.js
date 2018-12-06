@@ -14,6 +14,7 @@ class App extends Component {
         <div>
             <Game question = {this.props.questions[this.props.currentQuestion]}
                   image = {this.props.questions[this.props.currentQuestion].attachment.url}
+                  tips = {this.props.questions[this.props.currentQuestion].tips}
                   onQuestionAnswer = {(answer) => {
                       this.props.dispatch(questionAnswer(this.props.currentQuestion, answer))
                   }}

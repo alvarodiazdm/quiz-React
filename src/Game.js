@@ -9,6 +9,13 @@ export default class Game extends React.Component{
                     this.props.onQuestionAnswer(e.target.value);
                 }}/>
                 <img src= {this.props.image} width="360" height="240" />
+                {this.props.tips.map((tip) =>
+                    <ul>
+                        <li>
+                            {tip}
+                        </li>
+                    </ul>
+                )}
                 <p>
                     <button id="siguiente" onClick={() =>{
                        this.props.onChangeQuestion(1);
