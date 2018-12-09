@@ -19,7 +19,6 @@ export default class Game extends React.Component{
 
 
                 <div className = "center2">
-
                     <button id="anterior" onClick={()=>{ //REVISAR EL BOTON ANTERIOR EN EL INICIO DE LA APLICACION, TIENE QUE EMPEZAR DESACTIVADO
                         this.props.onChangeQuestion(-1);
                     }}>Anterior</button>

@@ -20,6 +20,9 @@ function score(state = 0, action = {}){
             }
             console.log(state);
             return state;
+        case INIT_QUESTIONS:
+            state = 0;
+            return state;
         default:
             return state;
     }
@@ -27,13 +30,17 @@ function score(state = 0, action = {}){
 function finished(state = false, action={}){
     switch (action.type){
         case SUBMIT:
+            /*
             for(let n in action.payload){
                if (action.payload[n].userAnswer === undefined || action.payload[n].userAnswer === "") {
                    state = false;
                    return state;
                }
-            }
+            }*/
             state = true;
+            return state;
+        case INIT_QUESTIONS:
+            state = false;
             return state;
         default:
             return state;
@@ -54,6 +61,9 @@ function currentQuestion(state = 0, action={}){
                 document.getElementById("siguiente").disabled = false;
             }
             return action.payload;
+        case INIT_QUESTIONS:
+            state = 0;
+            return state;
         default:
             return state;
     }
@@ -65,6 +75,12 @@ function questions(state = [], action={}){
                 return {...question,
                             userAnswer: action.payload.index === i ?
                                         action.payload.answer : question.userAnswer}
+            });
+        case INIT_QUESTIONS:
+            return state.map((question, i)=>{
+                return {...question,
+                    userAnswer: action.payload.index === i ?
+                        action.payload.answer : ""}
             });
         default:
             return state;
