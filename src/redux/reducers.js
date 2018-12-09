@@ -43,7 +43,6 @@ function currentQuestion(state = 0, action={}){
     switch (action.type){
         case CHANGE_QUESTION:
             //action.payload = action.payload + 1
-
             if(action.payload === 0){
                 document.getElementById("anterior").disabled = true;
             }else{
