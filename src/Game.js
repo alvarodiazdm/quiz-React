@@ -1,8 +1,20 @@
 import React from 'react';
 import Tip from './Tip.js';
 import Result from './Result.js';
+
+let anterior = false;
+let siguiente = false;
+
 export default class Game extends React.Component{
     render(){
+        if(this.props.currentQuestion === 0){
+            anterior = true;
+        }else if(this.props.currentQuestion === 9){
+            siguiente = true;
+        }else{
+            anterior = false;
+            siguiente = false;
+        }
         return (
             <div>
                 {console.log(this.props)}
@@ -17,12 +29,11 @@ export default class Game extends React.Component{
                     <Tip key={tip} tip = {tip}/>
                 )}
 
-
                 <div className = "center2">
-                    <button id="anterior" onClick={()=>{ //REVISAR EL BOTON ANTERIOR EN EL INICIO DE LA APLICACION, TIENE QUE EMPEZAR DESACTIVADO
+                    <button id="anterior" disabled={anterior} onClick={()=>{ //REVISAR EL BOTON ANTERIOR EN EL INICIO DE LA APLICACION, TIENE QUE EMPEZAR DESACTIVADO
                         this.props.onChangeQuestion(-1);
                     }}>Anterior</button>
-                    <button id="siguiente" onClick={() =>{
+                    <button id="siguiente" disabled={siguiente} onClick={() =>{
                         this.props.onChangeQuestion(1);
                     }}>Siguiente</button>
 

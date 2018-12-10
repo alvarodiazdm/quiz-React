@@ -30,13 +30,6 @@ function score(state = 0, action = {}){
 function finished(state = false, action={}){
     switch (action.type){
         case SUBMIT:
-            /*
-            for(let n in action.payload){
-               if (action.payload[n].userAnswer === undefined || action.payload[n].userAnswer === "") {
-                   state = false;
-                   return state;
-               }
-            }*/
             state = true;
             return state;
         case INIT_QUESTIONS:
@@ -49,17 +42,6 @@ function finished(state = false, action={}){
 function currentQuestion(state = 0, action={}){
     switch (action.type){
         case CHANGE_QUESTION:
-            //action.payload = action.payload + 1
-            if(action.payload === 0){
-                document.getElementById("anterior").disabled = true;
-            }else{
-                document.getElementById("anterior").disabled = false;
-            }
-            if(action.payload === 9){ //CAMBIAR ESTO POR INIT_QUESTIONS CUANDO LO IMPLEMENTEMOS
-                document.getElementById("siguiente").disabled = true;
-            }else {
-                document.getElementById("siguiente").disabled = false;
-            }
             return action.payload;
         case INIT_QUESTIONS:
             state = 0;
@@ -77,11 +59,8 @@ function questions(state = [], action={}){
                                         action.payload.answer : question.userAnswer}
             });
         case INIT_QUESTIONS:
-            return state.map((question, i)=>{
-                return {...question,
-                    userAnswer: action.payload.index === i ?
-                        action.payload.answer : ""}
-            });
+            state = action.payload;
+            return state;
         default:
             return state;
     }

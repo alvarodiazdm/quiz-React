@@ -9,8 +9,22 @@ import {changeQuestion} from "./redux/actions";
 import {submit} from "./redux/actions";
 import {initQuestions} from "./redux/actions";
 
+let url = "https://quiz2019.herokuapp.com/api/quizzes/random10wa?token=32f3456e3e8df146f85c";
+
 class App extends Component {
+    componentDidMount(){
+       fetch(url)
+           .then((res)=> res.json())
+           .then(data =>{
+               return this.props.dispatch(initQuestions(data));
+           })
+    }
     render() {
+
+        if(this.props.questions.length === 0){
+            return (<h1>Loading...</h1>)
+        }
+
         console.log(this.props);
         if (this.props.finished === false) {
         return (
@@ -29,6 +43,7 @@ class App extends Component {
                       submit={() => {
                           this.props.dispatch(submit(this.props.questions))
                       }}
+                      currentQuestion = {this.props.currentQuestion}
                 />
             </div>
         );
@@ -39,9 +54,11 @@ class App extends Component {
                     Final score: {this.props.score}
                     <p>
                         <button onClick={()=>{
-                            console.log("Try again!")
                             this.props.dispatch(initQuestions(this.props.questions))
                         }}>Try again</button>
+                        <button onClick={()=>{
+                            window.location.reload(true);
+                        }}>Reset</button>
                     </p>
                 </div>
             );
