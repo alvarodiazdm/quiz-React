@@ -4,12 +4,14 @@ import './App.css';
 import { connect } from 'react-redux';
 import Game from "./Game";
 import Result from "./Result"
+import Chronometer from "./Chronometer"
 import {questionAnswer} from "./redux/actions";
 import {changeQuestion} from "./redux/actions";
 import {submit} from "./redux/actions";
 import {initQuestions} from "./redux/actions";
 
 let url = "https://quiz2019.herokuapp.com/api/quizzes/random10wa?token=32f3456e3e8df146f85c";
+let comment = "You have finished the game!"
 
 class App extends Component {
     componentDidMount(){
@@ -19,13 +21,12 @@ class App extends Component {
                return this.props.dispatch(initQuestions(data));
            })
     }
+
     render() {
 
         if(this.props.questions.length === 0){
             return (<h1>Loading...</h1>)
         }
-
-        console.log(this.props);
         if (this.props.finished === false) {
         return (
             <div className="center">
@@ -33,7 +34,7 @@ class App extends Component {
                 <Game question={this.props.questions[this.props.currentQuestion]}
                       image={this.props.questions[this.props.currentQuestion].attachment.url}
                       tips={this.props.questions[this.props.currentQuestion].tips}
-                      onQuestionAnswer={(answer) => {
+                      onQuestionAnswer ={(answer) => {
                           this.props.dispatch(questionAnswer(this.props.currentQuestion, answer))
                       }}
                       onChangeQuestion={(a) => {
@@ -45,12 +46,16 @@ class App extends Component {
                       }}
                       currentQuestion = {this.props.currentQuestion}
                 />
+                <Chronometer comment = {comment}
+                             submit = {()=>{
+                                 this.props.dispatch(submit(this.props.questions))
+                }}/>
             </div>
         );
         } else {
             return (
                 <div>
-                    <h1>You have finished the game!</h1>
+                    <h1>{comment}</h1>
                     Final score: {this.props.score}
                     <p>
                         <button onClick={()=>{

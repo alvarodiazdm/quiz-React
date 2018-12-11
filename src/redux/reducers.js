@@ -8,9 +8,7 @@ function score(state = 0, action = {}){
     switch(action.type){
         case SUBMIT:
             state = 0;
-            //console.log(action.payload[0].question)
             for(let n =0; n<action.payload.length ; n++){
-                //console.log(action.payload[n].answer);
                 if(action.payload[n].userAnswer === undefined){
                     action.payload[n].userAnswer = "";
                 }
@@ -18,7 +16,6 @@ function score(state = 0, action = {}){
                     state++;
                 }
             }
-            console.log(state);
             return state;
         case INIT_QUESTIONS:
             state = 0;

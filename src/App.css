@@ -88,6 +88,14 @@ h4{
   padding: 10px;
 }
 
+.numbers {
+  margin: auto;
+  width: 30%;
+  height: 30%;
+  border: 3px;
+  padding: 10px;
+
+}
 
 .app {
   display: -webkit-box;
@@ -136,18 +144,6 @@ h4{
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.display .mins,
-.display .secs {
-  color: #292929;
-  font-size: 7rem;
-}
-
-.display .millis {
-  font-size: 2rem;
-  -ms-flex-item-align: end;
-  align-self: flex-end;
 }
 
 .actions {
