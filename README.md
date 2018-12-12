@@ -1,3 +1,13 @@
+Did it by:
+Álvaro Díaz del Mazo
+Alberto Mújica Ayuso
+G-836
+
+Mejoras Disponibles:
+-Personalización de los estilos
+-​​Botón de reset que pida un conjunto nuevo de preguntas al servidor y reinicie el juego.
+-Cuenta atrás que limite el tiempo que tiene el usuario para responder las preguntas y termine el juego si se acaba el tiempo.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

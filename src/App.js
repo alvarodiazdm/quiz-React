@@ -49,8 +49,8 @@ class App extends Component {
                         />
                     </div>
                     <div className="chronometer">
-                        <Chronometer comment = {comment}
-                                     submit = {()=>{
+                        <Chronometer  submit = {()=>{
+                                         comment = "You run out of time"
                                          this.props.dispatch(submit(this.props.questions))
                                      }}/>
                     </div>
