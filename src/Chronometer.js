@@ -11,17 +11,19 @@ export default class App extends React.Component {
             minutes: 2,
             seconds: 0,
         };
-        this._handleStartClick = this._handleStartClick.bind(this);
     }
-    _handleStartClick() {
-        if (!this.cond) {
-            this.interval = setInterval(() => {
-                this.tick();
-            }, 1000);
-            this.cond = true;
-        }
+    componentDidMount() {
+        this.interval = setInterval(() => {
+            this.tick();
+        }, 1000);
     }
+    componentWillUnmount() {
+       if (this.interval){
+           clearInterval(this.interval);
+       }
+       this.interval = null;
 
+    }
     tick() {
 
         let seconds = this.state.seconds;
@@ -29,7 +31,6 @@ export default class App extends React.Component {
 
         if (minutes === 0 && seconds === 0) {
             this.props.submit();
-            clearInterval(this.interval);
         }
 
         if (seconds === 0) {
@@ -37,23 +38,23 @@ export default class App extends React.Component {
             minutes = minutes - 1;
         }
         seconds = seconds - 1;
-            this.setState({
-                seconds: seconds,
-                minutes: minutes
-            });
+
+        this.setState({
+            seconds: seconds,
+            minutes: minutes
+        });
         }
     zeroPad(value) {
         return value < 10 ? `0${value}` : value;
     }
     render() {
-        this._handleStartClick();
         return (
             <div>
                 <div >
 
                     <div className="numbers">
-                        <span>{this.zeroPad(this.state.minutes)}:</span>
-                        <span>{this.zeroPad(this.state.seconds)} </span>
+                        <h1><span>{this.zeroPad(this.state.minutes)}:</span>
+                            <span>{this.zeroPad(this.state.seconds)} </span></h1>
 
                     </div>
                 </div>

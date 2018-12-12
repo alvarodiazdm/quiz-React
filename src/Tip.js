@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 export default class Game extends React.Component{
     render(){
     	return(
-
-    	<div>{this.props.tip} <br/></div> 
+            <Fragment><h4>{this.props.tip}</h4> <br/></Fragment>
     	)
 
     }
